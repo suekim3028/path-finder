@@ -4,9 +4,9 @@
 ## 1. 프로젝트 소개
 
 ### 데모
+<img src="https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b" width="200" height="400"/>
+<img src="[https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b](https://github.com/suekim3028/path-finder/assets/47552580/aa04de55-057c-481f-9b76-e13a71f9b2dc)" width="200" height="400"/>
 
-![output_video1 (1)](https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b)
-![original (1)](https://github.com/suekim3028/path-finder/assets/47552580/aa04de55-057c-481f-9b76-e13a71f9b2dc)
 
 ### 1.1 프로젝트 개요
 - 시각장애인들은 보행 중에 주변 환경을 인지하기 어려워 안전사고가 발생할 수 있습니다. 오솔길은 시각장애인들과 더불어 살아가는 세상을 만들어가기 위해, 그들의 안전한 보행을 돕고자 합니다. 오솔길은 숲 속에 난 좁고 한적한 길을 뜻하죠. 이런 오솔길처럼 저희 서비스가 시각장애인들이 걸어갈 수 있는 하나의 길이 되기를 소망합니다.
