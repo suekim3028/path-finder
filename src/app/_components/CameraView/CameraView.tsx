@@ -1,13 +1,16 @@
 "use client";
 
 import { commonApi } from "@/apis";
+
 import { DIMENSIONS } from "@/constants";
 import { L } from "@/design-system";
 import { useOnWindowSizeChange } from "@/hooks";
+import useClientErrorSnackbar from "@/hooks/useClientErrorSnackbar";
 import { useCallback, useRef } from "react";
 
 const CameraView = () => {
   const intervalId = useRef<NodeJS.Timeout | null>(null);
+  const { onError, ErrorSnackbar } = useClientErrorSnackbar();
 
   useOnWindowSizeChange(
     useCallback(() => {
@@ -40,7 +43,9 @@ const CameraView = () => {
           );
 
         const path = canvas.toDataURL("image/jpeg");
-        commonApi.uploadImage({ path, mime: "image/jpeg" });
+        // onError();
+
+        // commonApi.uploadImage({ path, mime: "image/jpeg" });
       }, 2000);
     } else {
       intervalId.current && clearInterval(intervalId.current);
@@ -70,6 +75,7 @@ const CameraView = () => {
           style={{ position: "absolute", top: "100%", left: "100%" }}
         />
       </L.FlexCol>
+      {ErrorSnackbar}
     </>
   );
 };
@@ -88,7 +94,6 @@ const getDevices = async (onFindCamera: (hasCamera: boolean) => void) => {
 
     const video = _video as HTMLVideoElement;
     video.srcObject = videoMediaStream;
-    // video.play();
 
     onFindCamera(true);
   } catch (e) {
