@@ -15,6 +15,11 @@
 
 
 ### 1.2 SDGs
+
+<img src="https://github.com/suekim3028/path-finder/assets/47552580/cd464056-db04-4822-970c-627a0cc15625" width="100" height="100"/>
+<img src="https://github.com/suekim3028/path-finder/assets/47552580/808506a4-db34-41d0-9de3-c769617ce621" width="100" height="100"/>
+
+      
 - 10. Reduced Inequalities (불평등 감소)
 - 11. Sustainable Cities and Communities (지속가능한 도시와 커뮤니티)
 
