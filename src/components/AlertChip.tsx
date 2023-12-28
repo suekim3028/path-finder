@@ -1,12 +1,13 @@
 "use client";
 import { css } from "@emotion/react";
 import Image from "next/image";
+import styled from "styled-components";
 
 type AlertProps = {
   warn: boolean;
 };
 
-const alert = ({ warn }: AlertProps) => css`
+const Alert = ({ warn }: AlertProps) => styled.div`
   display: "block";
   padding: "0.875rem 2.1875rem";
   justify-content: "center";
@@ -24,7 +25,8 @@ export const AlertChip = ({ warn }: AlertProps) => {
   return (
     <div
       style={{
-        display: "inline-flex",
+        position: "relative",
+        display: `${warn ? "block" : "none"}`,
         padding: "0.875rem 2.1875rem",
         justifyContent: "center",
         alignItems: "center",

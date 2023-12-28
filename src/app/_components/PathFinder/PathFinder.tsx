@@ -1,13 +1,18 @@
 import { uploadImage } from "@/apis/common.apis";
+import { Grid } from "@/design-system/layouts/Grid";
 import { useVibration } from "@/hooks";
+import dynamic from "next/dynamic";
 import {
+  Fragment,
   forwardRef,
-  memo,
   useCallback,
   useImperativeHandle,
   useRef,
   useState,
 } from "react";
+const Warn = dynamic(() => import("../../boilerplate/components/Warn"), {
+  ssr: false,
+});
 
 const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
   const [matrix, setMatrix] = useState<number[][]>(
@@ -37,7 +42,32 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
     )
   );
 
-  return <></>;
+  return (
+    <>
+      {/* <AlertChip warn={matrix && true} /> */}
+      <Grid
+        style={{
+          width: "100dvw",
+          height: "100dvh",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          display: "grid",
+          placeItems: "center",
+          gridTemplateColumns: `repeat(4, 1fr)`,
+          gridTemplateRows: `repeat(8,1fr)`,
+        }}
+      >
+        {matrix.map((arr, row) => (
+          <Fragment key={row}>
+            {arr.map((item) => (
+              <Warn key={""} value={item} />
+            ))}
+          </Fragment>
+        ))}
+      </Grid>
+    </>
+  );
 });
 
 export type PathFinderRef = {
