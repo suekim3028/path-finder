@@ -1,6 +1,7 @@
 import { uploadImage } from "@/apis/common.apis";
 import { Grid } from "@/design-system/layouts/Grid";
 import { useVibration } from "@/hooks";
+import useBarrierWarning from "@/hooks/useBarrierWarning";
 import dynamic from "next/dynamic";
 import {
   Fragment,
@@ -18,6 +19,7 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
   const [matrix, setMatrix] = useState<number[][]>(
     Array.from({ length: 8 }, () => Array.from({ length: 4 }, () => 0))
   );
+  const { onWarn, WarningSnackbar } = useBarrierWarning();
   const currentMatrixTimestamp = useRef(0);
 
   useVibration(matrix);
@@ -28,12 +30,14 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
       () => ({
         onCapture: async (image: File) => {
           const res = await uploadImage(image);
-          console.log(res);
           const { depth, timestamp } = res;
 
-          console.log({ depth, timestamp });
           if (currentMatrixTimestamp.current > timestamp) return;
           currentMatrixTimestamp.current = timestamp;
+
+          const max = Math.max(...depth.map((i) => Math.max(...i)));
+
+          onWarn(max > 0.7);
 
           setMatrix(depth);
         },
@@ -66,6 +70,7 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
           </Fragment>
         ))}
       </Grid>
+      {WarningSnackbar}
     </>
   );
 });
