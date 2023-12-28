@@ -1,4 +1,4 @@
-import { WebsiteTypes } from "@types";
+import { WebsiteTypes } from "@/types";
 
 declare global {
   namespace NodeJS {
