@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p 8080",
+    "lint": "next lint",
+    "deploy": "yarn build && gcloud app deploy"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",

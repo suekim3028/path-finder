@@ -9,7 +9,7 @@ export const useVibration = (matrix: number[][]) => {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     const max = Math.max(...matrix.map((m) => Math.max(...m.slice(1, -1))));
-    const threshold = 0.3;
+    const threshold = 0.1;
 
     if (max < threshold) {
       return;
@@ -20,7 +20,7 @@ export const useVibration = (matrix: number[][]) => {
     const durationDiff = durationMax - durationMin;
 
     const intervalMin = 200;
-    const intervalMax = 3000;
+    const intervalMax = 1000;
     const intervalDiff = intervalMax - intervalMin;
 
     const duration = durationMin + (durationDiff / (1 - threshold)) * (1 - max);
@@ -28,8 +28,8 @@ export const useVibration = (matrix: number[][]) => {
 
     console.log(interval);
 
+    var sound = new Audio("https://bigsoundbank.com/UPLOAD/wav/2066.wav");
     intervalRef.current = setInterval(() => {
-      var sound = new Audio("https://www.soundjay.com/buttons/button-30.wav");
       sound.play();
     }, interval);
 
