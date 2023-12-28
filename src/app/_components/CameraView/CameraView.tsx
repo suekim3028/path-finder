@@ -20,7 +20,7 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
 
   const handleOnFindCamera = (hasCamera: boolean) => {
     if (hasCamera) {
-      intervalId.current = setTimeout(async () => {
+      intervalId.current = setInterval(async () => {
         const _video = document.getElementById("videoElement");
         const _canvas = document.getElementById("canvas");
         if (!_canvas || !_video) return;
@@ -53,7 +53,7 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
         } catch (e) {
           onError();
         }
-      }, 2000);
+      }, 10000);
     } else {
       intervalId.current && clearInterval(intervalId.current);
     }

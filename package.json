@@ -17,6 +17,7 @@
     "@mui/material": "^5.15.2",
     "@mui/material-nextjs": "^5.15.0",
     "axios": "^1.6.3",
+    "lottie-react": "^2.4.0",
     "lottie-web": "^5.12.2",
     "next": "^14.0.3",
     "react": "^18",
