@@ -1,4 +1,5 @@
 import { uploadImage } from "@/apis/common.apis";
+import { useVibration } from "@/hooks";
 import {
   forwardRef,
   memo,
@@ -13,6 +14,8 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
     Array.from({ length: 8 }, () => Array.from({ length: 4 }, () => 0))
   );
   const currentMatrixTimestamp = useRef(0);
+
+  useVibration(matrix);
 
   useImperativeHandle(
     ref,

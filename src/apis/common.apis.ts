@@ -10,7 +10,7 @@ type UploadImageResponse = {
   depth: number[][];
 };
 
-export const uploadImage = (file: File) => {
+export const uploadImage = async (file: File) => {
   const formData = new FormData();
   formData.append("file", file);
 
