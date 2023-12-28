@@ -4,6 +4,7 @@
 ## 1. 프로젝트 소개
 
 ### 데모
+
 ![output_video1 (1)](https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b)
 ![original (1)](https://github.com/suekim3028/path-finder/assets/47552580/aa04de55-057c-481f-9b76-e13a71f9b2dc)
 
