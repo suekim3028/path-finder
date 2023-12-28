@@ -8,7 +8,7 @@ import { useOnWindowSizeChange } from "@/hooks";
 import useClientErrorSnackbar from "@/hooks/useClientErrorSnackbar";
 import { useCallback, useRef } from "react";
 
-const CameraView = () => {
+const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
   const intervalId = useRef<NodeJS.Timeout | null>(null);
   const { onError, ErrorSnackbar } = useClientErrorSnackbar();
 
@@ -20,7 +20,7 @@ const CameraView = () => {
 
   const handleOnFindCamera = (hasCamera: boolean) => {
     if (hasCamera) {
-      intervalId.current = setInterval(() => {
+      intervalId.current = setTimeout(async () => {
         const _video = document.getElementById("videoElement");
         const _canvas = document.getElementById("canvas");
         if (!_canvas || !_video) return;
@@ -42,10 +42,17 @@ const CameraView = () => {
             DIMENSIONS.SCREEN_HEIGHT
           );
 
-        const path = canvas.toDataURL("image/jpeg");
-        // onError();
-
-        // commonApi.uploadImage({ path, mime: "image/jpeg" });
+        try {
+          canvas.toBlob(async (blob) => {
+            if (!blob) return;
+            const file = new File([blob], "fileName.jpg", {
+              type: "image/jpeg",
+            });
+            onCapture && onCapture(file);
+          }, "image/jpeg");
+        } catch (e) {
+          onError();
+        }
       }, 2000);
     } else {
       intervalId.current && clearInterval(intervalId.current);

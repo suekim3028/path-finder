@@ -15,7 +15,7 @@ type CustomAxiosInstance = {
 
 class API {
   static axiosInstance: AxiosInstance = axios.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: "http://35.202.74.253/",
   });
 
   private isResponseInitialized = false;
