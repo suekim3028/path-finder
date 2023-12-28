@@ -1,19 +1,24 @@
-import { ConnectingAirportsOutlined } from "@mui/icons-material";
 import { useEffect, useRef } from "react";
 
 export const useVibration = (matrix: number[][]) => {
   const intervalRef = useRef<null | NodeJS.Timeout>(null);
-  const soundRef = useRef<HTMLAudioElement>();
+  const successRef = useRef(false);
 
   useEffect(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-
     const max = Math.max(...matrix.map((m) => Math.max(...m.slice(1, -1))));
-    const threshold = 0.5;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    const threshold = 0.7;
 
     if (max < threshold) {
+      if (!successRef.current) {
+        var sound = new Audio("https://bigsoundbank.com/UPLOAD/wav/2262.wav");
+        sound.play();
+        successRef.current = true;
+      }
       return;
     }
+
+    successRef.current = false;
 
     const durationMin = 250;
     const durationMax = 700;
