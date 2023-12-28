@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import ApiError from "./ApiError";
 
 type CustomAxiosInstance = {
   get<T>(url: string, config?: AxiosRequestConfig): Promise<T>;
@@ -56,7 +57,15 @@ class API {
           return response.data;
         },
         onRejected: ({ response }: { response: AxiosResponse }) => {
-          return Promise.reject();
+          return Promise.reject(
+            new ApiError({
+              userTitle: response.data?.userTitle || "오류 발생",
+              userMessage:
+                response.data?.userMessage ||
+                "오류가 발생하였습니다. 다시 시도해주세요.",
+              code: response.data?.code || 0,
+            })
+          );
         },
       };
 
