@@ -19,6 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
       </head>
       <body className={inter.className}>
         <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
