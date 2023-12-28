@@ -1,4 +1,5 @@
 import { uploadImage } from "@/apis/common.apis";
+import { THRESHOLD } from "@/constants";
 import { Grid } from "@/design-system/layouts/Grid";
 import { useVibration } from "@/hooks";
 import useBarrierWarning from "@/hooks/useBarrierWarning";
@@ -37,7 +38,7 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
 
           const max = Math.max(...depth.map((i) => Math.max(...i)));
 
-          onWarn(max > 0.7);
+          onWarn(max > THRESHOLD);
 
           setMatrix(depth);
         },

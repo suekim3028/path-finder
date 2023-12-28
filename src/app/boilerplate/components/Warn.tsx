@@ -3,6 +3,8 @@ import Lottie from "lottie-react";
 import lottie from "lottie-web";
 import WarnAnimation from "@/assets/WarnAnimation.json";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { DIMENSIONS, THRESHOLD } from "@/constants";
+import { L } from "@/design-system";
 
 /**
  * @param {number} value : 장애물과의 거리 값입니다. 값에 따라 사이즈, 투명도가 달라집니다.
@@ -12,15 +14,24 @@ type WarnProps = {
 };
 
 const Warn = ({ value = 0 }: WarnProps) => {
+  const cellWidth = DIMENSIONS.SCREEN_WIDTH / 4;
+
+  const size = cellWidth * (5 * (value - THRESHOLD + 0.3));
+
   return (
     <>
-      {value > 0.7 ? (
-        <Lottie
-          style={{
-            transform: `scale(${10 * value})`,
-          }}
-          animationData={WarnAnimation}
-          loop={true}></Lottie>
+      {value > THRESHOLD ? (
+        <L.LayoutBase w={size} h={size}>
+          <Lottie
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "fill",
+            }}
+            animationData={WarnAnimation}
+            loop={true}
+          />
+        </L.LayoutBase>
       ) : (
         <div />
       )}
