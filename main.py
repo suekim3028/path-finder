@@ -34,7 +34,7 @@ async def root():
 async def process_frame(file: bytes = File(...)):
     # read image from bytes 
     image = Image.open(io.BytesIO(file))
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    timestamp = int(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
     print(image, timestamp)
     return {"depth": dpt(image), 
             "timestamp": timestamp}

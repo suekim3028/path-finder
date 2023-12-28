@@ -6,6 +6,8 @@
 .pnp.js
 .yarn/install-state.gz
 
+__pycache__/
+dl/__pycache__/
 # testing
 /coverage
 
