@@ -8,7 +8,7 @@ const CameraView = () => {
   useOnWindowSizeChange(useCallback((viewport) => getDevices(viewport), []));
 
   return (
-    <L.FlexCol flex={1} outline={"red"}>
+    <L.FlexCol flex={1}>
       <video
         autoPlay
         disableRemotePlayback
@@ -44,7 +44,7 @@ const getDevices = async ({
         facingMode: { exact: "environment" },
         width: { exact: width },
         height: { exact: height },
-        // aspectRatio: height / width,
+        aspectRatio: { exact: width / height },
       },
     });
 

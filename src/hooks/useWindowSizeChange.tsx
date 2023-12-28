@@ -5,15 +5,9 @@ export const useOnWindowSizeChange = (
   cb: (viewport: { width: number; scale: number; height: number }) => void
 ) => {
   const getSize = useCallback(() => {
-    const width =
-      typeof window === "undefined"
-        ? DIMENSIONS.WINDOW_MAX_WIDTH
-        : Math.max(
-            Math.min(window.innerWidth, DIMENSIONS.WINDOW_MAX_WIDTH),
-            DIMENSIONS.WINDOW_MIN_WIDTH
-          );
+    const width = DIMENSIONS.SCREEN_WIDTH;
     const scale = typeof window === "undefined" ? 1 : window.innerWidth / width;
-    const height = typeof window === "undefined" ? 0 : window.innerHeight;
+    const height = DIMENSIONS.SCREEN_HEIGHT;
     return { width, scale, height };
   }, []);
 
