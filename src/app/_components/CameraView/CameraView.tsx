@@ -27,8 +27,8 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
         const canvas = _canvas as HTMLCanvasElement;
         const video = _video as HTMLVideoElement;
 
-        canvas.width = DIMENSIONS.SCREEN_WIDTH;
-        canvas.height = DIMENSIONS.SCREEN_HEIGHT;
+        canvas.width = DIMENSIONS.IMAGE_SIZE;
+        canvas.height = DIMENSIONS.IMAGE_SIZE;
 
         const context = canvas.getContext("2d");
         if (!context) return;
@@ -38,8 +38,8 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
             video,
             0,
             0,
-            DIMENSIONS.SCREEN_WIDTH,
-            DIMENSIONS.SCREEN_HEIGHT
+            DIMENSIONS.IMAGE_SIZE,
+            DIMENSIONS.IMAGE_SIZE
           );
 
         try {
@@ -48,6 +48,7 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
             const file = new File([blob], "fileName.jpg", {
               type: "image/jpeg",
             });
+
             onCapture && onCapture(file);
           }, "image/jpeg");
         } catch (e) {

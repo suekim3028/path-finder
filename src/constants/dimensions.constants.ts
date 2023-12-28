@@ -8,3 +8,5 @@ const SCREEN_WIDTH =
 const SCREEN_HEIGHT = typeof window !== "undefined" ? window.innerHeight : 0;
 
 export { SCREEN_WIDTH, SCREEN_HEIGHT };
+
+export const IMAGE_SIZE = 265;
