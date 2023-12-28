@@ -1,17 +1,14 @@
 from .utils import downsize
-from transformers import AutoImageProcessor, DPTForDepthEstimation
+
 import torch
 import numpy as np
 from PIL import Image
 
 
-def dpt(image):
-
-    image_processor = AutoImageProcessor.from_pretrained("Intel/dpt-swinv2-tiny-256")
-    model = DPTForDepthEstimation.from_pretrained("Intel/dpt-swinv2-tiny-256")
-
+def dpt(image, image_processor, model):
+    device= model.device
     # prepare image for the model
-    inputs = image_processor(images=image, return_tensors="pt")
+    inputs = image_processor(images=image, return_tensors="pt").to(device)
 
     with torch.no_grad():
         outputs = model(**inputs)
@@ -31,7 +28,7 @@ def dpt(image):
     depth = Image.fromarray(formatted)
     # depth.save("depth.jpg")
 
-    depth_img_resize = downsize(depth, 8, 4).tolist()
+    depth_img_resize = (downsize(depth, 8, 4)/255.).tolist()
     
     
     return depth_img_resize

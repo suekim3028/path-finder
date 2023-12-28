@@ -6,9 +6,15 @@ from PIL import Image
 import io 
 import datetime 
 from starlette.middleware.cors import CORSMiddleware
+import torch 
+from transformers import AutoImageProcessor, DPTForDepthEstimation
 
 
 app = FastAPI()
+device = "cuda" if torch.cuda.is_available() else "cpu"
+image_processor = AutoImageProcessor.from_pretrained("Intel/dpt-swinv2-tiny-256")
+model = DPTForDepthEstimation.from_pretrained("Intel/dpt-swinv2-tiny-256").to(device)
+model.eval()
 
 origins = [
     "*"
@@ -36,5 +42,5 @@ async def process_frame(file: bytes = File(...)):
     image = Image.open(io.BytesIO(file))
     timestamp = int(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
     print(image, timestamp)
-    return {"depth": dpt(image), 
+    return {"depth": dpt(image, image_processor, model), 
             "timestamp": timestamp}
