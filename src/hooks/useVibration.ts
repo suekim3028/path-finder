@@ -9,7 +9,7 @@ export const useVibration = (matrix: number[][]) => {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     const max = Math.max(...matrix.map((m) => Math.max(...m.slice(1, -1))));
-    const threshold = 0.1;
+    const threshold = 0.5;
 
     if (max < threshold) {
       return;

@@ -60,8 +60,8 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
       >
         {matrix.map((arr, row) => (
           <Fragment key={row}>
-            {arr.map((item) => (
-              <Warn key={""} value={item} />
+            {arr.map((item, idx) => (
+              <Warn key={idx} value={item} />
             ))}
           </Fragment>
         ))}

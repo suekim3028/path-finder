@@ -72,8 +72,6 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
           id="videoElement"
           style={{
             objectFit: "fill",
-            opacity: 0.2,
-            // resize: "both",
           }}
           controls={false}
           playsInline
