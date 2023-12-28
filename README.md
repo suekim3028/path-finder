@@ -24,12 +24,23 @@
 - 10. Reduced Inequalities (불평등 감소)
 - 11. Sustainable Cities and Communities (지속가능한 도시와 커뮤니티)
 
-## 2. 기술 스택
+## 2. 구현 기능
+
+### 1️⃣ 장애물 인식 및 경고 기능
+
+핸드폰 카메라와 인공지능 기술을 활용하여 주변 환경을 실시간으로 파악합니다.
+주변 환경에서 인식한 장애물을 사용자에게 음성 알림, 진동 등으로 전달하여 주의를 줍니다.
+
+### 2️⃣ 사물과의 거리 측정 기능
+
+카메라로 파악한 환경 정보를 토대로 가까운 사물과 사용자 사이의 거리를 측정합니다.
+
+## 3. 기술 스택
 - Frontend: React, Next.js, Styled-Component, Google Cloud Platform
 - Backend: FastAPI
 - ML/AI: PyTorch, huggingface🤗, TensorRT
 
-## 3. 팀 소개
+## 4. 팀 소개
 - 팀명: 잭과콩나무(H조)
 - 팀원: 김수빈 (FE), 김아현 (FE/Design), 오원준 (ML), 임예원 (ML/BE)
 
