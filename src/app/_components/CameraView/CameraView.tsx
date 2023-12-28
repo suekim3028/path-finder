@@ -16,7 +16,7 @@ const CameraView = () => {
 
   const handleOnFindCamera = (hasCamera: boolean) => {
     if (hasCamera) {
-      intervalId.current = setTimeout(() => {
+      intervalId.current = setInterval(() => {
         const _video = document.getElementById("videoElement");
         const _canvas = document.getElementById("canvas");
         if (!_canvas || !_video) return;
@@ -45,7 +45,6 @@ const CameraView = () => {
     }
   };
 
-  console.log("======", DIMENSIONS);
   return (
     <>
       <L.FlexCol w="100%" h={"100%"} style={{ position: "relative" }}>
