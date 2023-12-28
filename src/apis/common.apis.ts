@@ -9,6 +9,11 @@ export type GetAResponse = {
   a: string[];
 };
 
-export const getNoticeList = () => {
-  return APIInstance.get<GetAResponse>("");
+export const getApiTest = async () => {
+  return new Promise((resolve: (data: { test: string }) => void) => {
+    setTimeout(() => {
+      resolve({ test: "true" });
+    }, 1000);
+  });
+  // return APIInstance.get<GetAResponse>("");
 };
