@@ -4,8 +4,9 @@
 ## 1. 프로젝트 소개
 
 ### 데모
-<img src="https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b" width="200" height="400"/>
-<img src="https://github.com/suekim3028/path-finder/assets/47552580/aa04de55-057c-481f-9b76-e13a71f9b2dc" width="200" height="400"/>
+<img src="https://github.com/suekim3028/path-finder/assets/47552580/aa04de55-057c-481f-9b76-e13a71f9b2dc" width="240" height="400"/>
+<img src="https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b" width="240" height="400"/>
+<img src="https://github.com/suekim3028/path-finder/assets/51940808/a0a24a3d-0367-4fb3-9ef6-d0adf0afe913" width="240" height="400"/>
 
 
 ### 1.1 프로젝트 개요
@@ -24,12 +25,18 @@
 - 11. Sustainable Cities and Communities (지속가능한 도시와 커뮤니티)
 
 ## 2. 기술 스택
-- Frontend: React 
+- Frontend: React, Next.js, Styled-Component, Google Cloud Platform
 - Backend: FastAPI
 - ML/AI: PyTorch, huggingface🤗, TensorRT
 
 ## 3. 팀 소개
 - 팀명: 잭과콩나무(H조)
 - 팀원: 김수빈 (FE), 김아현 (FE/Design), 오원준 (ML), 임예원 (ML/BE)
+
+## 🚀 Quick start
+```
+npm install
+npm run dev
+```
 
 
