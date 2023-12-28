@@ -1,39 +1,79 @@
 "use client";
 
+import { DIMENSIONS } from "@/constants";
 import { L } from "@/design-system";
 import { useOnWindowSizeChange } from "@/hooks";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 const CameraView = () => {
-  useOnWindowSizeChange(useCallback((viewport) => getDevices(viewport), []));
+  const intervalId = useRef<NodeJS.Timeout | null>(null);
 
+  useOnWindowSizeChange(
+    useCallback(() => {
+      getDevices(handleOnFindCamera);
+    }, [])
+  );
+
+  const handleOnFindCamera = (hasCamera: boolean) => {
+    if (hasCamera) {
+      intervalId.current = setTimeout(() => {
+        const _video = document.getElementById("videoElement");
+        const _canvas = document.getElementById("canvas");
+        if (!_canvas || !_video) return;
+        const canvas = _canvas as HTMLCanvasElement;
+        const video = _video as HTMLVideoElement;
+
+        canvas.width = DIMENSIONS.SCREEN_WIDTH;
+        canvas.height = DIMENSIONS.SCREEN_HEIGHT;
+
+        const context = canvas.getContext("2d");
+        if (!context) return;
+
+        !!context &&
+          context.drawImage(
+            video,
+            0,
+            0,
+            DIMENSIONS.SCREEN_WIDTH,
+            DIMENSIONS.SCREEN_HEIGHT
+          );
+
+        const data = canvas.toDataURL("image/jpeg");
+      }, 2000);
+    } else {
+      intervalId.current && clearInterval(intervalId.current);
+    }
+  };
+
+  console.log("======", DIMENSIONS);
   return (
-    <L.FlexCol flex={1}>
-      <video
-        autoPlay
-        disableRemotePlayback
-        disablePictureInPicture
-        id="videoElement"
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-        controls={false}
-        playsInline
+    <>
+      <L.FlexCol w="100%" h={"100%"} style={{ position: "relative" }}>
+        <video
+          autoPlay
+          disableRemotePlayback
+          disablePictureInPicture
+          width={"100%"}
+          height={"100%"}
+          id="videoElement"
+          style={{
+            objectFit: "fill",
+            opacity: 0.2,
+            // resize: "both",
+          }}
+          controls={false}
+          playsInline
+        />
+      </L.FlexCol>
+      <canvas
+        id={"canvas"}
+        style={{ position: "absolute", top: "0%", left: "0%" }}
       />
-    </L.FlexCol>
+    </>
   );
 };
 
-const getDevices = async ({
-  width,
-  height,
-}: {
-  width: number;
-  scale: number;
-  height: number;
-}) => {
-  alert(`${width} ${height}`);
+const getDevices = async (onFindCamera: (hasCamera: boolean) => void) => {
   const _video = document.querySelector("#videoElement");
 
   if (!_video) return;
@@ -42,16 +82,17 @@ const getDevices = async ({
     const videoMediaStream = await navigator.mediaDevices?.getUserMedia({
       video: {
         facingMode: { exact: "environment" },
-        width: { exact: width },
-        height: { exact: height },
-        aspectRatio: { exact: width / height },
       },
     });
 
     const video = _video as HTMLVideoElement;
     video.srcObject = videoMediaStream;
+    // video.play();
+
+    onFindCamera(true);
   } catch (e) {
     console.log("no back camera");
+    onFindCamera(false);
   }
 };
 
