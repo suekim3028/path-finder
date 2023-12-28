@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 8080",
     "lint": "next lint",
-    "deploy": "yarn build && gcloud app deploy"
+    "deploy": "npm run build && gcloud app deploy"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
