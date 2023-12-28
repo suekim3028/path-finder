@@ -53,7 +53,7 @@ const CameraView = ({ onCapture }: { onCapture?: (image: File) => void }) => {
         } catch (e) {
           onError();
         }
-      }, 10000);
+      }, 500);
     } else {
       intervalId.current && clearInterval(intervalId.current);
     }

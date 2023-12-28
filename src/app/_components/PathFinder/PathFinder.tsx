@@ -1,13 +1,16 @@
 import { uploadImage } from "@/apis/common.apis";
+import { AlertChip } from "@/components/AlertChip";
 import { DIMENSIONS } from "@/constants";
 import { Grid } from "@/design-system/layouts/Grid";
+import { findMaxIndex } from "@/utils/math";
 import dynamic from "next/dynamic";
 import {
   Fragment,
-  Suspense,
   forwardRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -19,6 +22,7 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
   const [matrix, setMatrix] = useState<number[][]>(
     Array.from({ length: 8 }, () => Array.from({ length: 4 }, () => 0))
   );
+  const [maxValueIndices, setMaxValueIndices] = useState<number[]>([0, 0]);
   const currentMatrixTimestamp = useRef(0);
 
   useImperativeHandle(
@@ -42,26 +46,29 @@ const PathFinder = forwardRef<PathFinderRef>((_props, ref) => {
   );
 
   return (
-    <Grid
-      style={{
-        width: "100dvw",
-        height: "100dvh",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        display: "grid",
-        placeItems: "center",
-        gridTemplateColumns: `repeat(4, 1fr)`,
-        gridTemplateRows: `repeat(8,1fr)`,
-      }}>
-      {matrix.map((arr, i) => (
-        <Fragment key={i}>
-          {arr.map((value, idx) => (
-            <Warn key={i * arr.length + idx} value={value} />
-          ))}
-        </Fragment>
-      ))}
-    </Grid>
+    <>
+      {/* <AlertChip warn={matrix && true} /> */}
+      <Grid
+        style={{
+          width: "100dvw",
+          height: "100dvh",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          display: "grid",
+          placeItems: "center",
+          gridTemplateColumns: `repeat(4, 1fr)`,
+          gridTemplateRows: `repeat(8,1fr)`,
+        }}>
+        {matrix.map((arr, row) => (
+          <Fragment key={row}>
+            {arr.map((item) => (
+              <Warn key={""} value={item} />
+            ))}
+          </Fragment>
+        ))}
+      </Grid>
+    </>
   );
 });
 
