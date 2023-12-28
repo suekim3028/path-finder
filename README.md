@@ -26,7 +26,9 @@
 ## 2. 기술 스택
 - Frontend: React 
 - Backend: FastAPI
-- ML/AI: PyTorch, huggingface🤗, TensorRT
+- ML/AI:</br>
+  PyTorch</br>
+  huggingface🤗
 
 ## 3. 팀 소개
 - 팀명: 잭과콩나무(H조)
