@@ -1,5 +1,6 @@
 "use client";
 
+import { commonApi } from "@/apis";
 import { DIMENSIONS } from "@/constants";
 import { L } from "@/design-system";
 import { useOnWindowSizeChange } from "@/hooks";
@@ -38,7 +39,8 @@ const CameraView = () => {
             DIMENSIONS.SCREEN_HEIGHT
           );
 
-        const data = canvas.toDataURL("image/jpeg");
+        const path = canvas.toDataURL("image/jpeg");
+        commonApi.uploadImage({ path, mime: "image/jpeg" });
       }, 2000);
     } else {
       intervalId.current && clearInterval(intervalId.current);
@@ -63,11 +65,11 @@ const CameraView = () => {
           controls={false}
           playsInline
         />
+        <canvas
+          id={"canvas"}
+          style={{ position: "absolute", top: "100%", left: "100%" }}
+        />
       </L.FlexCol>
-      <canvas
-        id={"canvas"}
-        style={{ position: "absolute", top: "0%", left: "0%" }}
-      />
     </>
   );
 };
@@ -80,7 +82,7 @@ const getDevices = async (onFindCamera: (hasCamera: boolean) => void) => {
   try {
     const videoMediaStream = await navigator.mediaDevices?.getUserMedia({
       video: {
-        facingMode: { exact: "environment" },
+        facingMode: { ideal: "environment" },
       },
     });
 
