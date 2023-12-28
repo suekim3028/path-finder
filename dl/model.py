@@ -28,7 +28,10 @@ def dpt(image, image_processor, model):
     depth = Image.fromarray(formatted)
     # depth.save("depth.jpg")
 
-    depth_img_resize = (downsize(depth, 8, 4)/255.).tolist()
+    depth_img_resize = (downsize(depth, 8, 4)/255.)
+    depth_img_resize[:, 0] = 0
+    depth_img_resize[:, -1] = 0
+    depth_img_resize = np.where(depth_img_resize == np.max(depth_img_resize), np.max(depth_img_resize), 0)
+
     
-    
-    return depth_img_resize
+    return depth_img_resize.tolist()
