@@ -31,7 +31,7 @@ def dpt(image, image_processor, model):
     depth_img_resize = (downsize(depth, 8, 4)/255.)
     depth_img_resize[:, 0] = 0
     depth_img_resize[:, -1] = 0
-    depth_img_resize = np.where(depth_img_resize == np.max(depth_img_resize), np.max(depth_img_resize), 0)
+    depth_img_resize = np.where(depth_img_resize == np.median(depth_img_resize), np.max(depth_img_resize), 0)
 
     
     return depth_img_resize.tolist()
