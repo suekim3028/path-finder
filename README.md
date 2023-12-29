@@ -38,7 +38,7 @@
 ## 3. 기술 스택
 - Frontend: React, Next.js, Styled-Component, Google Cloud Platform
 - Backend: FastAPI
-- ML/AI: PyTorch, huggingface🤗
+- ML/AI: PyTorch, huggingface🤗, Google Cloud Platform
 
 ## 4. 팀 소개
 - 팀명: 잭과콩나무(H조)
