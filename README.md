@@ -1,5 +1,9 @@
 ## 2023 GDSCx알파코 나무톤 - 오솔길 (잭과콩나무)
 
+## 🌐 Web Page
+
+https://namuthon-path-finder.du.r.appspot.com/
+
 ## 1. 프로젝트 소개
 
 ### 데모
@@ -7,10 +11,6 @@
 <img src="https://github.com/suekim3028/path-finder/assets/47552580/aa04de55-057c-481f-9b76-e13a71f9b2dc" width="240" height="400"/>
 <img src="https://github.com/suekim3028/path-finder/assets/47552580/d9b1ee69-3874-48c3-8dc9-9468d1d4a52b" width="240" height="400"/>
 <img src="https://github.com/suekim3028/path-finder/assets/51940808/a0a24a3d-0367-4fb3-9ef6-d0adf0afe913" width="240" height="400"/>
-
-## 🌐 Web Page
-
-https://namuthon-path-finder.du.r.appspot.com/
 
 ### 1.1 프로젝트 개요
 
